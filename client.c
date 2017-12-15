@@ -3,12 +3,13 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <unistd.h>
 
 int main(){
 	struct sockaddr_in server;
 	int sock;
 	char buf[32];
-	int n;
+	int n = 1;
 
 	sock = socket(AF_INET,SOCK_STREAM,0);
 
@@ -20,10 +21,10 @@ int main(){
 	connect(sock,(struct sockaddr *)&server,sizeof(server));
 
 	memset(buf,0,sizeof(buf));
-	n = read(sock,buf,sizeof(buf));
-
-	printf("%d,%s\n",n,buf);
-
+	for(int i=0;i<1000;i++){
+		write(sock,&i,sizeof(int));
+		usleep(1e5);
+	}
 	close(sock);
 
 	return 0;

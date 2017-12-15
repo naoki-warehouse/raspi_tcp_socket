@@ -10,6 +10,8 @@ int main(){
 	struct sockaddr_in client;
 	int len;
 	int sock;
+	int count;
+	int n;
 
 	sock0 = socket(AF_INET,SOCK_STREAM,0);
 
@@ -19,14 +21,15 @@ int main(){
 	bind(sock0,(struct sockaddr *)&addr,sizeof(addr));
 
 	listen(sock0,5);
-
+	
 	len = sizeof(client);
-	sock = accept(sock0, (struct sockaddr *)&client, &len);
-
-	write(sock,"HELLO",5);
-
-	close(sock);
-
+	while(1){
+		sock = accept(sock0, (struct sockaddr *)&client, &len);
+		while((n = read(sock,&count,sizeof(int)) > 0)){
+			printf("%d\n",count);
+		}
+		close(sock);
+	}
 	close(sock0);
 
 	return 0;
