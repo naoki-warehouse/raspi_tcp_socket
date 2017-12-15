@@ -1,2 +1,12 @@
 server
 client
+*.iml
+/Raspi_Controller/.gradle
+/Raspi_Controller/local.properties
+/Raspi_Controller/.idea/workspace.xml
+/Raspi_Controller/.idea/libraries
+/Raspi_Controller/.DS_Store
+/Raspi_Controller/build
+/Raspi_Controller/captures
+/Raspi_Controller/.externalNativeBuild
+
